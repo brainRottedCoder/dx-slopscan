@@ -1,0 +1,23 @@
+{
+  "name": "Hugo · DX SlopScan",
+  "short_name": "Hugo",
+  "description": "PR epistemic contribution scoring — human-thought detection, zero LLM in detection.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#04161f",
+  "theme_color": "#077A7D",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "96x96",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.svg",
+      "sizes": "400x96",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

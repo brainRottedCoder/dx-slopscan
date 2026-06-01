@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 96" fill="none" role="img" aria-label="Hugo DX SlopScan">
+  <defs>
+    <linearGradient id="logo-bg" x1="0" y1="0" x2="96" y2="96">
+      <stop offset="0%" stop-color="#0a2d3d"/>
+      <stop offset="100%" stop-color="#04161f"/>
+    </linearGradient>
+    <linearGradient id="logo-ring" x1="48" y1="8" x2="48" y2="88">
+      <stop offset="0%" stop-color="#7AE2CF"/>
+      <stop offset="100%" stop-color="#077A7D"/>
+    </linearGradient>
+    <linearGradient id="logo-title" x1="108" y1="24" x2="380" y2="56">
+      <stop offset="0%" stop-color="#FDEB9E"/>
+      <stop offset="55%" stop-color="#7AE2CF"/>
+      <stop offset="100%" stop-color="#FDEB9E"/>
+    </linearGradient>
+  </defs>
+  <!-- mark -->
+  <rect x="4" y="4" width="88" height="88" rx="18" fill="url(#logo-bg)" stroke="#077A7D" stroke-width="2"/>
+  <circle cx="48" cy="48" r="34" stroke="url(#logo-ring)" stroke-width="2" stroke-dasharray="8 6" opacity="0.85"/>
+  <path d="M22 30V22h8" stroke="#7AE2CF" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M74 30V22h-8" stroke="#7AE2CF" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M22 66v8h8" stroke="#7AE2CF" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M74 66v8h-8" stroke="#7AE2CF" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="28" y="30" width="9" height="36" rx="2" fill="#7AE2CF"/>
+  <rect x="59" y="30" width="9" height="36" rx="2" fill="#7AE2CF"/>
+  <rect x="28" y="44" width="40" height="8" rx="2" fill="#FDEB9E"/>
+  <circle cx="68" cy="26" r="4" fill="#7AE2CF"/>
+  <circle cx="48" cy="48" r="3" fill="#077A7D" stroke="#7AE2CF" stroke-width="1.5"/>
+  <!-- wordmark -->
+  <text x="108" y="58" font-family="'DM Mono', 'Courier New', monospace" font-size="44" font-weight="500" fill="url(#logo-title)" letter-spacing="-1">Hugo</text>
+  <text x="110" y="82" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13" font-weight="500" fill="#5d8a93" letter-spacing="0.32em">DX SLOPSCAN</text>
+  <line x1="108" y1="68" x2="392" y2="68" stroke="#077A7D" stroke-width="1" opacity="0.45"/>
+</svg>
