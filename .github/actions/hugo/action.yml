@@ -1,0 +1,68 @@
+name: 'Hugo PR Quality Check'
+description: 'Scores PR descriptions for epistemic contribution using Hugo and posts a rich PR comment.'
+inputs:
+  api-url:
+    description: 'Hugo backend URL (no trailing slash)'
+    required: true
+  pr-url:
+    description: 'GitHub PR URL to analyze (defaults to the triggering pull_request)'
+    required: false
+    default: ''
+  threshold:
+    description: 'Warning threshold 0-100; scores below this add a warning in the comment'
+    required: false
+    default: '20'
+  github-token:
+    description: 'GitHub token with pull-requests: write (pass github.token from the workflow)'
+    required: true
+  breakdown-url:
+    description: 'Link to full Hugo breakdown UI'
+    required: false
+    default: 'https://dx-slopscan.vercel.app/scan'
+outputs:
+  score:
+    description: 'Hugo score (0-100)'
+    value: ${{ steps.analyze.outputs.score }}
+  label:
+    description: 'Slop label (Quality, Low Slop, etc.)'
+    value: ${{ steps.analyze.outputs.label }}
+runs:
+  using: composite
+  steps:
+    - name: Analyze PR with Hugo
+      id: analyze
+      shell: bash
+      env:
+        API_URL: ${{ inputs.api-url }}
+        PR_URL: ${{ inputs.pr-url }}
+        RESPONSE_FILE: ${{ runner.temp }}/hugo_response.json
+      run: |
+        set -euo pipefail
+        TARGET_PR="${PR_URL:-${{ github.event.pull_request.html_url }}}"
+        if [ -z "$TARGET_PR" ]; then
+          echo "ERROR: pr-url input is required when not running on pull_request"
+          exit 1
+        fi
+        FALLBACK='{"hugo_score":0,"slop_label":"Unknown","whats_missing":{"questions":[]},"sentences":[],"species":[]}'
+        RESPONSE=$(curl -sf -X POST "${API_URL}/analyze" \
+          -H "Content-Type: application/json" \
+          -d "{\"pr_url\": \"${TARGET_PR}\", \"mode\": \"pr\"}" \
+          || echo "$FALLBACK")
+        echo "$RESPONSE" > "$RESPONSE_FILE"
+        SCORE=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('hugo_score',0))" 2>/dev/null || echo "0")
+        LABEL=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('slop_label','Unknown'))" 2>/dev/null || echo "Unknown")
+        echo "score=$SCORE" >> "$GITHUB_OUTPUT"
+        echo "label=$LABEL" >> "$GITHUB_OUTPUT"
+        echo "response_file=$RESPONSE_FILE" >> "$GITHUB_OUTPUT"
+
+    - name: Post Hugo comment
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        THRESHOLD: ${{ inputs.threshold }}
+        BREAKDOWN_URL: ${{ inputs.breakdown-url }}
+        RESPONSE_FILE: ${{ steps.analyze.outputs.response_file }}
+      run: |
+        python3 "${{ github.action_path }}/post_comment.py"

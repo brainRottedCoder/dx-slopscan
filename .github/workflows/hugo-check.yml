@@ -1,0 +1,21 @@
+name: Hugo — PR Quality Check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  hugo-check:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Hugo analyze and comment
+        uses: ./.github/actions/hugo
+        with:
+          api-url: ${{ secrets.HUGO_API_URL }}
+          threshold: "20"
+          github-token: ${{ github.token }}
