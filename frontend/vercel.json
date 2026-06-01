@@ -1,0 +1,14 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "redirects": [
+    { "source": "/analyze", "destination": "/scan", "permanent": true },
+    { "source": "/simulator", "destination": "/signals", "permanent": true },
+    { "source": "/species", "destination": "/taxonomy", "permanent": true },
+    { "source": "/leaderboard", "destination": "/rankings", "permanent": true },
+    { "source": "/benchmark", "destination": "/evaluation", "permanent": true },
+    { "source": "/integrations", "destination": "/setup", "permanent": true },
+    { "source": "/docs", "destination": "/doc-quality", "permanent": true }
+  ]
+}
