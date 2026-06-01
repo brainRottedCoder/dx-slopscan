@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# Hugo pre-commit hook
+# Checks if a PR description (COMMIT_EDITMSG) meets quality threshold.
+# Install: cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+#
+# Or install via: npx dx-slopscan install-hook
+#
+HUGO_API="${HUGO_API_URL:-https://dx-slopscan.onrender.com}"
+THRESHOLD="${HUGO_THRESHOLD:-20}"
+
+# Only run if commit message file exists and has content
+MSG_FILE="$1"
+if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
+    exit 0
+fi
+
+MSG=$(cat "$MSG_FILE")
+WORDS=$(echo "$MSG" | wc -w | tr -d ' ')
+
+# Skip if commit message is too short to evaluate (merge commits, etc.)
+if [ "$WORDS" -lt 5 ]; then
+    exit 0
+fi
+
+# Check if API is reachable
+if ! curl -sf "$HUGO_API/health" > /dev/null 2>&1; then
+    echo "Hugo: API not reachable at $HUGO_API — skipping check"
+    exit 0
+fi
+
+echo "Hugo: analyzing commit message..."
+RESPONSE=$(curl -sf -X POST "$HUGO_API/analyze" \
+    -H "Content-Type: application/json" \
+    -d "{\"description\": $(echo "$MSG" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')}" \
+    2>/dev/null)
+
+if [ $? -ne 0 ] || [ -z "$RESPONSE" ]; then
+    echo "Hugo: analysis failed — skipping"
+    exit 0
+fi
+
+SCORE=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('hugo_score', 0))" 2>/dev/null)
+LABEL=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('slop_label', ''))" 2>/dev/null)
+
+echo "Hugo score: $SCORE/100 — $LABEL"
+
+if python3 -c "import sys; sys.exit(0 if float('${SCORE:-0}') >= float('$THRESHOLD') else 1)" 2>/dev/null; then
+    echo "Hugo: ✅ Score meets threshold ($THRESHOLD)"
+    exit 0
+else
+    echo ""
+    echo "Hugo: ⚠ Score $SCORE is below warning threshold $THRESHOLD"
+    echo "Consider explaining: WHY was this change needed? What tradeoffs were made?"
+    echo "(Commit blocked. Set HUGO_THRESHOLD=0 to disable, or improve the commit message.)"
+    exit 1
+fi

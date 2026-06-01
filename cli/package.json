@@ -1,0 +1,21 @@
+{
+  "name": "dx-slopscan",
+  "version": "2.0.0",
+  "description": "Hugo CLI — measure epistemic contribution in PR descriptions",
+  "main": "index.js",
+  "bin": {
+    "dx-slopscan": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["pr", "code-review", "quality", "slop", "hugo"],
+  "author": "Shubh Varshney",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brainRottedCoder/dx-slopscan.git"
+  },
+  "homepage": "https://github.com/brainRottedCoder/dx-slopscan",
+  "license": "MIT",
+  "engines": { "node": ">=18" }
+}
