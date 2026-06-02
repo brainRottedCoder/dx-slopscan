@@ -1,0 +1,37 @@
+{
+  "name": "slop-scanner",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "test:e2e": "turbo test:e2e",
+    "typecheck": "turbo typecheck",
+    "postinstall": "pnpm rebuild better-sqlite3",
+    "rebuild:native": "pnpm rebuild better-sqlite3",
+    "seed:baseline": "tsx scripts/seed-baseline.ts",
+    "bakeoff": "pnpm --filter @slop-scanner/detection test -- src/bakeoff/bakeoff.test.ts"
+  },
+  "devDependencies": {
+    "@slop-scanner/detection": "workspace:*",
+    "@types/node": "^22.13.10",
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-unicorn": "^56.0.1",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.3",
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}

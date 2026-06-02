@@ -1,0 +1,170 @@
+[
+  {
+    "repo": "vercel/next.js",
+    "prNumber": 54012,
+    "label": "high_quality",
+    "description": "This change refactors ISR cache invalidation to reduce stale responses under burst traffic. We add a bounded retry with jitter and document trade-offs for edge vs node runtimes.",
+    "diffSymbols": ["CachePolicy", "revalidatePath", "fetchCache"],
+    "humanNotes": "Detailed ISR cache behavior explanation with trade-offs"
+  },
+  {
+    "repo": "pallets/flask",
+    "prNumber": 5120,
+    "label": "high_quality",
+    "description": "Introduces stricter request context teardown to prevent leaked references in async test clients. Includes migration notes for extensions that hook teardown signals.",
+    "diffSymbols": ["AppContext", "teardown", "RequestContext"],
+    "humanNotes": "Concrete lifecycle rationale"
+  },
+  {
+    "repo": "example-org/demo-low-1",
+    "prNumber": 87,
+    "label": "low_quality",
+    "description": "Updated files. See diff.",
+    "diffSymbols": ["AuthService", "TokenStore", "login"],
+    "humanNotes": "Description restates diff without why"
+  },
+  {
+    "repo": "example-org/demo-low-2",
+    "prNumber": 12,
+    "label": "low_quality",
+    "description": "",
+    "diffSymbols": ["UserRepository", "save", "delete"],
+    "humanNotes": "Empty description"
+  },
+  {
+    "repo": "facebook/react",
+    "prNumber": 28001,
+    "label": "high_quality",
+    "description": "Splits concurrent rendering work into smaller lanes for transitions. Benchmarks show improved input responsiveness on large lists without regressing hydration time.",
+    "diffSymbols": ["lanes", "scheduleUpdate", "Transition"],
+    "humanNotes": "Benchmark-backed rationale"
+  },
+  {
+    "repo": "django/django",
+    "prNumber": 17001,
+    "label": "high_quality",
+    "description": "Adds queryset prefetch guard for polymorphic relations to avoid N+1 queries in admin list views. Includes before/after query counts in test notes.",
+    "diffSymbols": ["Prefetch", "QuerySet", "admin"],
+    "humanNotes": "Performance context with measurements"
+  },
+  {
+    "repo": "example-org/demo-low-3",
+    "prNumber": 3,
+    "label": "low_quality",
+    "description": "Misc fixes and updates.",
+    "diffSymbols": ["fix", "update", "patch"],
+    "humanNotes": "Vague wording"
+  },
+  {
+    "repo": "tiangolo/fastapi",
+    "prNumber": 11001,
+    "label": "high_quality",
+    "description": "Tightens dependency injection cache keys for request-scoped providers. Documents breaking change for custom scopes and provides upgrade snippet.",
+    "diffSymbols": ["Depends", "dependency_overrides", "scope"],
+    "humanNotes": "Breaking change documented"
+  },
+  {
+    "repo": "example-org/demo-low-4",
+    "prNumber": 19,
+    "label": "low_quality",
+    "description": "Changed AuthService and TokenStore and login.",
+    "diffSymbols": ["AuthService", "TokenStore", "login"],
+    "humanNotes": "Mirrors symbol list only"
+  },
+  {
+    "repo": "microsoft/vscode",
+    "prNumber": 210001,
+    "label": "high_quality",
+    "description": "Improves semantic token refresh debouncing when switching editors rapidly. Adds telemetry-free regression test and explains UX impact for large files.",
+    "diffSymbols": ["SemanticTokens", "debounce", "editor"],
+    "humanNotes": "UX impact explained"
+  },
+  {
+    "repo": "denoland/deno",
+    "prNumber": 22001,
+    "label": "high_quality",
+    "description": "Refines permission prompt copy and adds explicit deny persistence for CI environments. Security review notes included in commit body.",
+    "diffSymbols": ["Permissions", "prompt", "CI"],
+    "humanNotes": "Security context"
+  },
+  {
+    "repo": "example-org/demo-low-5",
+    "prNumber": 44,
+    "label": "low_quality",
+    "description": "It might help to update things.",
+    "diffSymbols": ["helper", "config", "value"],
+    "humanNotes": "Hedging without substance"
+  },
+  {
+    "repo": "rust-lang/rust",
+    "prNumber": 120001,
+    "label": "high_quality",
+    "description": "Optimizes borrow check diagnostics for nested closures by preserving span context. Includes rustc dev guide link and migration advice for nightly users.",
+    "diffSymbols": ["borrowck", "Closure", "diagnostic"],
+    "humanNotes": "Diagnostic improvement context"
+  },
+  {
+    "repo": "nodejs/node",
+    "prNumber": 51001,
+    "label": "high_quality",
+    "description": "Adjusts default HTTP server timeouts for slow mobile networks while keeping backward compatibility. Documents opt-out flag and expected latency changes.",
+    "diffSymbols": ["http", "timeout", "Server"],
+    "humanNotes": "Compatibility notes"
+  },
+  {
+    "repo": "example-org/demo-low-6",
+    "prNumber": 6,
+    "label": "low_quality",
+    "description": "Patch.",
+    "diffSymbols": ["patch", "file", "line"],
+    "humanNotes": "Single word"
+  },
+  {
+    "repo": "torvalds/linux",
+    "prNumber": 1,
+    "label": "high_quality",
+    "description": "Reworks scheduler wake-up path to reduce cross-CPU migrations for latency-sensitive tasks. Includes measured p99 improvement on reference hardware.",
+    "diffSymbols": ["scheduler", "wake_up", "migration"],
+    "humanNotes": "Measured improvement"
+  },
+  {
+    "repo": "example-org/demo-low-7",
+    "prNumber": 77,
+    "label": "low_quality",
+    "description": "Updates scheduler wake_up migration.",
+    "diffSymbols": ["scheduler", "wake_up", "migration"],
+    "humanNotes": "Symbol echo"
+  },
+  {
+    "repo": "example-org/demo-high-8",
+    "prNumber": 8,
+    "label": "high_quality",
+    "description": "Adds circuit breaker around outbound webhooks with explicit open/half-open thresholds. Failure budgets are documented for on-call playbooks.",
+    "diffSymbols": ["Webhook", "CircuitBreaker", "retry"],
+    "humanNotes": "Operational detail"
+  },
+  {
+    "repo": "example-org/demo-low-8",
+    "prNumber": 9,
+    "label": "low_quality",
+    "description": "Webhook CircuitBreaker retry changes.",
+    "diffSymbols": ["Webhook", "CircuitBreaker", "retry"],
+    "humanNotes": "No operational detail"
+  },
+  {
+    "repo": "example-org/demo-high-9",
+    "prNumber": 10,
+    "label": "high_quality",
+    "description": "Clarifies migration steps for database index rebuild during low-traffic windows. Rollback procedure and expected lock duration are specified.",
+    "diffSymbols": ["migration", "index", "rollback"],
+    "humanNotes": "Rollback documented"
+  },
+  {
+    "repo": "example-org/demo-low-9",
+    "prNumber": 11,
+    "label": "low_quality",
+    "description": "",
+    "diffSymbols": ["migration", "index", "rollback"],
+    "humanNotes": "Empty body"
+  }
+]

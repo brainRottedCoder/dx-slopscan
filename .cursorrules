@@ -1,0 +1,28 @@
+# Slop Scanner — Engineering Rules
+
+Apply to every phase. See implementation-plan.md for full context.
+
+## Code
+- TypeScript strict mode. No `any`. No `!` non-null assertions.
+- Single responsibility. Max 40 lines per function.
+- No magic numbers — use named constants.
+- Typed domain errors only.
+- Pure functions for detection/scoring logic.
+- Explicit async rejection handling.
+- Zod-validated env at startup — fail fast.
+- Comments explain WHY, not WHAT.
+- Max 200 lines per file.
+
+## Naming
+- Files: kebab-case (React component files may use PascalCase in apps/web)
+- Types: PascalCase | Functions/vars: camelCase | Constants: SCREAMING_SNAKE_CASE
+
+## Testing
+- Co-located `*.test.ts` before shipping modules.
+- Mock external I/O only.
+- CI must be green before a phase is done.
+
+## Architecture
+- `packages/shared-types` has zero runtime dependencies.
+- No business logic in route handlers.
+- GitHub I/O only through `packages/github-client` (Phase 2+).

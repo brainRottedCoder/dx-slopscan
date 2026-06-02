@@ -1,0 +1,12 @@
+{
+  "precision": 1,
+  "recall": 1,
+  "accuracy": 1,
+  "threshold": 65,
+  "confusion": {
+    "tp": 12,
+    "fp": 0,
+    "tn": 9,
+    "fn": 0
+  }
+}

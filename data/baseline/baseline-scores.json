@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-30T00:34:05.027Z",
+  "repos": [
+    {
+      "fullName": "facebook/react",
+      "healthScore": 38
+    },
+    {
+      "fullName": "pallets/flask",
+      "healthScore": 52
+    },
+    {
+      "fullName": "django/django",
+      "healthScore": 62
+    },
+    {
+      "fullName": "vercel/next.js",
+      "healthScore": 67
+    },
+    {
+      "fullName": "tiangolo/fastapi",
+      "healthScore": 72
+    },
+    {
+      "fullName": "microsoft/vscode",
+      "healthScore": 77
+    },
+    {
+      "fullName": "denoland/deno",
+      "healthScore": 82
+    },
+    {
+      "fullName": "rust-lang/rust",
+      "healthScore": 87
+    },
+    {
+      "fullName": "nodejs/node",
+      "healthScore": 48
+    },
+    {
+      "fullName": "torvalds/linux",
+      "healthScore": 64
+    }
+  ],
+  "healthScoreDistribution": [
+    38,
+    41,
+    44,
+    47,
+    50,
+    52,
+    54,
+    56,
+    58,
+    60,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    45,
+    48,
+    51,
+    55,
+    59,
+    61,
+    64,
+    67,
+    70,
+    73,
+    76
+  ]
+}

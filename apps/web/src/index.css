@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+@import './styles/devmri-tokens.css';
+@import './styles/devmri-components.css';
+
+@theme {
+  --color-scan-cyan: var(--scan-cyan);
+  --color-scan-cyan-dim: var(--scan-cyan-dim);
+  --color-health-green: var(--health-green);
+  --color-warning-amber: var(--warning-amber);
+  --color-warning-orange: var(--warning-orange);
+  --color-critical-red: var(--critical-red);
+  --color-info-blue: var(--info-blue);
+  --color-bg-void: var(--bg-void);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-surface: var(--bg-surface);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-contributor-accent: var(--contributor-accent);
+  --color-contributor-muted: var(--contributor-muted);
+  --color-score-high: var(--health-green);
+  --color-score-cyan: var(--scan-cyan);
+  --color-score-medium: var(--warning-amber);
+  --color-score-orange: var(--warning-orange);
+  --color-score-low: var(--text-muted);
+  --color-score-danger: var(--critical-red);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-display);
+  background: var(--bg-void);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
